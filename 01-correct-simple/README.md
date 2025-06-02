@@ -17,8 +17,8 @@ We’ll dive deeper into them in other chapters, but here’s a quick list of wh
    We need `volatile` to make sure the compiler actually performs two separate additions.  
    Without it, a good compiler will reduce the loop to just one `+= 2` instruction.
 
-2. **OS scheduler effects**  
-   We need to make sure the OS scheduler is fair — which is actually very hard, because the interference it introduces is *not* random.
+2. **CPU resources**  
+   We need to make sure the CPU frequency governor and the OS sceduler are fair — which is actually very hard, because the interference they introduces is *not* random.
 
 3. **Process and timing overhead**  
    We need to account for the overhead of spawning processes and measuring time.  
