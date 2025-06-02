@@ -14,13 +14,13 @@ So there is genuinly no good option to remove the effects of the frequency gover
 The best we can do is to try and give both benchmarks similar CPU state or alternativly try to limit the damage to the final measurment.
 Null hypothesis tests are actually really good at this because unlike a regrssion test we are not asking for an exact figure.
 
-Its also a good idea to prefer end to end benchmarks rather than small secssion. because the startup code has a meaningful performance effect and thus should absolutly be measured. For languges with a JIT its usually a good idea to use the `time` command in order to get a full measurment.
+Its also a good idea to prefer end to end benchmarks rather than small secssions. Because the startup code has a meaningful performance effect and thus should absolutly be measured. For languges with a JIT its usually a good idea to use the `time` command in order to get a full measurment.
 
 So as an example if we are comparing a luajit program to a C excutble we SHOULD include the JIT runtime in our tests. Since thats time the CPU gets to heat up. If that makes it hard to get a good final figure we may chose to spin up the CPU for the C program an apropriate amount of time.
 
 However simply ignoring the problem can mess up our result to the point of showing an oposite effect to reality. Once you see this you can not unsee it. Soooo many benchmarks forget to acount for this effect while using the builin "`get_time`" command in their various runtimes.
 
-[Versel](https://programming-language-benchmarks.vercel.app/lua-vs-c) usually gets it right in their benchmarks. unsuprisingly C is faster than luajit across the board.
+[Versel](https://programming-language-benchmarks.vercel.app/lua-vs-c) usually gets it right in their benchmarks, by simply including a full end-to-end measurment. Unsuprisingly the measurments show C is faster than luajit across the board.
 
 # OS considerations
-This effect is destinct from the OS sceduler messing with our work. I have purposfully used long IO calls as the main drive of heat for the CPU because that keeps the CPU sceduler close to its initial state on most systems.
+This effect is destinct from the OS sceduler messing with our work. I have purposfully used long IO calls as the main drive of heat for the CPU because that keeps the CPU sceduler close to its initial state on most operating systems.
