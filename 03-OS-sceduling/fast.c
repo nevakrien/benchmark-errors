@@ -18,15 +18,15 @@ int main() {
     volatile int x = 0;
 
     //make the OS prefer this
-    // for(volatile int i=0;i<=5000000;i++);
+    for(volatile int i=0;i<=5000000;i++);
 
-    //even IO is making it worse
-    for (int i = 0; i < 1000; i++){
-        dumb_read("junk.txt");
-    }
+    //even IO is making it more prefered (to an extent)
+    // for (int i = 0; i < 1000; i++){
+        // dumb_read("junk.txt");
+    // }
 
     clock_t start = clock();
-    for (int i = 0; i < 5000; i++) {
+    for (int i = 0; i < 50000; i++) {
         x += 1;
     }
     clock_t end = clock();
