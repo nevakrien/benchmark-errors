@@ -65,7 +65,7 @@ it gets optimized out and you really dont need to think about it.
 
 I have seen so many people make these tiny "optimizations" which either do absolutly nothing or in some cases make the code SLOWER because they missunderstand what the compiler is actually doing.
 
-this concept applies to many other languge runtimes: javascript under the V8 engine has the same behivior, as well as Go Rust C++ or any languge with an LLVM backend.
+This concept applies to many other languge runtimes: JavaScript under the V8 engine has the same behivior, as well as Go, Rust, C++, or any languge with an LLVM backend.
 I have even seen it in gforth.
 
 However some runtimes have such terible optimizers that they do not do this. 
