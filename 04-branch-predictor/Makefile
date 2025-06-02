@@ -1,10 +1,10 @@
 CC = gcc
-CFLAGS = -O2 -std=c99 -Wall
+CFLAGS = -O2 -g -std=c99 -Wall
 
 REPEATS = 128  # MUST be a multiple of 8 for clean ABBABAAB repeats
 ANALYZER = ../analyze.py
 
-all: main
+all: main slow
 
 main: main.c
 	$(CC) $(CFLAGS) -o main main.c
@@ -12,7 +12,7 @@ main: main.c
 slow: slow.c
 	$(CC) $(CFLAGS) -o slow slow.c
 
-bench-predictor: main $(ANALYZER) predictable.bin random.bin
+bench-main: main $(ANALYZER) predictable.bin random.bin
 	@echo "\033[1;36m==> Running benchmark with ABBABAAB pattern ($(REPEATS) trials)\033[0m"
 	rm -f slow.txt fast.txt
 	@for i in $(shell seq 0 $$(($(REPEATS) - 1))); do \
@@ -24,7 +24,7 @@ bench-predictor: main $(ANALYZER) predictable.bin random.bin
 	@echo "\033[1;36m==> Analyzing results...\033[0m"
 	python3 $(ANALYZER) slow.txt fast.txt
 
-bench-fair: main $(ANALYZER) predictable.bin random.bin
+bench-fair: main slow $(ANALYZER) predictable.bin random.bin
 	@echo "\033[1;36m==> Running benchmark with ABBABAAB pattern ($(REPEATS) trials)\033[0m"
 	rm -f slow.txt fast.txt
 	@for i in $(shell seq 0 $$(($(REPEATS) - 1))); do \
@@ -49,4 +49,4 @@ bench: main slow $(ANALYZER) predictable.bin random.bin
 	python3 $(ANALYZER) slow.txt fast.txt
 
 clean:
-	rm -f main *.txt
+	rm -f main slow *.txt
