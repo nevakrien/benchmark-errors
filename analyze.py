@@ -51,7 +51,7 @@ def null_hypothesis_test(slow_times, fast_times):
             print(f"          The 'fast' code is faster in a statistically significant way.{RESET}")
         else:
             print(f"{RED}  Result: Reject the null hypothesis.")
-            print(f"          The 'slow' code is faster in a statistically significant way (unexpected).{RESET}")
+            print(f"          The 'slow' code is faster in a statistically significant way.{RESET}")
     else:
         print(f"{YELLOW}  Result: Fail to reject the null hypothesis.")
         print(f"          No statistically significant difference between the two versions.{RESET}")

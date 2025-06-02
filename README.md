@@ -5,6 +5,8 @@ The languge chosen is C since a lot of the concepts are easier to SHOW in C,
 however this is fundemental to how modern computers work and all of these are present in any languge,
 in fact the driving force behind making this repo was a bad article about luajit speedups in relation to C.
 
+I am going to assume you are familiar with how computers work. If terms like "assembly" or "machine code" mean nothing to you then you would likely need todo some googeling to understand the concepts here.
+
 # build/run
 to get the code on your computer run
 ```bash
