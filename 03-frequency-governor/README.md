@@ -4,13 +4,13 @@ which can slowdown or speedup the CPU depending on how much work it needs to do.
 
 this matters a lot to us because if the CPU is cold for 1 benchmark and then fast for the other we will see a fake speedup. This is part of the reason why I am doing an ABBABAAB pattern for our benchmarks. So that code runs at generally the same time on probably the same CPU.
 
-however as this benchmark shows this is not enough and backround calculations DO effect the CPUs clock speeds which has a consistent measurble effect on performance!!!
+however as this benchmark shows this is not enough and backround calculations DO effect the CPUs clock speeds which has a consistent measurble effect on performance!!! on my machine when the AC is on its measuring at around 20% speedup (yes the heat in the room can effect this).
 
 there is really no good way around this... you could potentially try and heat up the CPU by runing a very long busy loop before u start measuring. But this has the effect of potentially requiring a slowdown so the CPU can cool off.
 
 # what we do
 
-So there is genuinly no good option to remove the effect of the frequency governor.
+So there is genuinly no good option to remove the effects of the frequency governor.
 The best we can do is to try and give both benchmarks similar CPU state or alternativly try to limit the damage to the final measurment.
 Null hypothesis tests are actually really good at this because unlike a regrssion test we are not asking for an exact figure.
 
