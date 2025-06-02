@@ -14,7 +14,7 @@ void run_branch_test(const char *path) {
         if (byte)
             x++;
         else
-            x += 2;
+            x += 4;
     }
 
     fclose(f);
