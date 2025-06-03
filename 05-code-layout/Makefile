@@ -36,14 +36,11 @@ bad-align.c:
 bad-align.o: bad-align.c
 	$(CC) -O0 -c -o bad-align.o bad-align.c
 
-good-align.o: good-align.c
-	$(CC) $(CFLAGS) -c -o good-align.o good-align.c
-
 slow: main.c bad-align.o code.o
 	$(CC) $(CFLAGS) -o slow main.c bad-align.o code.o
 
-fast: main.c good-align.o code.o
-	$(CC) $(CFLAGS) -o fast main.c good-align.o code.o
+fast: main.c bad-align.o code.o
+	$(CC) $(CFLAGS) -o fast main.c code.o bad-align.o
 
 bench: slow fast $(ANALYZER)
 	@echo "\033[1;36m==> Running benchmark with ABBABAAB pattern ($(REPEATS) trials)\033[0m"
@@ -59,4 +56,4 @@ bench: slow fast $(ANALYZER)
 
 
 clean:
-	rm -f slow fast *.txt bad-align.c
+	rm -f slow fast *.o *.txt bad-align.c
