@@ -70,7 +70,8 @@ def main():
     report_stats("Slow", slow_results, slow_times)
     report_stats("Fast", fast_results, fast_times)
 
-    speedups = slow_times / fast_times
+    eps = np.finfo(float).eps
+    speedups = (slow_times+eps) / (fast_times+eps)
     print(f"{BOLD}Speedup stats:{RESET}")
     print("  Mean speedup: ", np.mean(speedups))
     print("  Speedup std:  ", np.std(speedups))

@@ -29,7 +29,7 @@ We’ll dive deeper into them in other chapters, but here’s a quick list of wh
    In this case, the loop is small enough that a modern CPU can effectively remove it.  
    _(More on that in the chapter about the branch predictor.)_
 
-5. **Code alignment and caching**  
+5. **Code layout and caching**  
    We have to consider speedup/slowdown effects from code alignment and linking.  
    In this case, the code fits in the L1 instruction cache, so there is no interference from this type.
 
