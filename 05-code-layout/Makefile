@@ -13,7 +13,7 @@ code.o: code.c
 	$(CC) $(CFLAGS) -c -o code.o code.c
 
 
-bad-align.c:
+bloat.c:
 	@echo "Generating $@ with $(SWITCH_SIZE) unique case values and payloads..."
 	@echo 'int weird_func(int x) {'            > $@
 	@echo '  switch(x) {'                      >> $@
@@ -33,14 +33,14 @@ bad-align.c:
 	@echo '    default: x += 42; break;'         >> $@
 	@echo '  } return x; }'                      >> $@
 
-bad-align.o: bad-align.c
-	$(CC) -O0 -c -o bad-align.o bad-align.c
+bloat.o: bloat.c
+	$(CC) -O0 -c -o bloat.o bloat.c
 
-slow: main.c bad-align.o code.o
-	$(CC) $(CFLAGS) -o slow main.c bad-align.o code.o
+slow: slower-main.c bloat.o code.o
+	$(CC) $(CFLAGS) -o slow slower-main.c code.o bloat.o
 
-fast: main.c bad-align.o code.o
-	$(CC) $(CFLAGS) -o fast main.c code.o bad-align.o
+fast: main.c bloat.o code.o
+	$(CC) $(CFLAGS) -o fast main.c bloat.o code.o
 
 bench: slow fast $(ANALYZER)
 	@echo "\033[1;36m==> Running benchmark with ABBABAAB pattern ($(REPEATS) trials)\033[0m"
@@ -56,4 +56,4 @@ bench: slow fast $(ANALYZER)
 
 
 clean:
-	rm -f slow fast *.o *.txt bad-align.c
+	rm -f slow fast *.o *.txt bloat.c
